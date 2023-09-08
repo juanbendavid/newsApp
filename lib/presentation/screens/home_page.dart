@@ -16,7 +16,10 @@ class HomePage extends StatelessWidget {
         itemCount: news.newsList.length,
         itemBuilder: (context, index) {
           final res = news.newsList[index];
-          return Text(res.title);
+          return ListTile(
+            title: Text(res.title),
+            subtitle: Text(res.articleId),
+          );
         },
       ),
     );
