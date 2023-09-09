@@ -80,7 +80,7 @@ class Result {
             ? []
             : List<String>.from(json["keywords"]!.map((x) => x)),
         creator: json["creator"] == null
-            ? []
+            ? ["No creator"]
             : List<String>.from(json["creator"]!.map((x) => x)),
         videoUrl: json["video_url"],
         description: json["description"],
