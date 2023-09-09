@@ -21,6 +21,7 @@ class NewsProvider extends ChangeNotifier {
     final response = await http.get(Uri.parse(url));
     final resp = newsModelFromJson(response.body);
     newsList.addAll(resp.results);
+    notifyListeners();
     //print(resp.results[0].title);
   }
 }
