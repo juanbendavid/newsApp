@@ -5,10 +5,10 @@ class ThemeApp {
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
             centerTitle: false,
-            elevation: 10,
-            backgroundColor: Colors.black,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
             titleTextStyle: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.bold)),
       );

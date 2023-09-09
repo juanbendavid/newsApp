@@ -12,50 +12,52 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("News App"),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Divider(),
-          );
-        },
-        itemCount: news.newsList.length,
-        itemBuilder: (context, index) {
-          final res = news.newsList[index];
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Flexible(
-                  child: Column(
+      body: news.newsList.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Divider(),
+                );
+              },
+              itemCount: news.newsList.length,
+              itemBuilder: (context, index) {
+                final res = news.newsList[index];
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
                     children: [
-                      Text(
-                        res.title,
-                        maxLines: 4,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                      Flexible(
+                        child: Column(
+                          children: [
+                            Text(
+                              res.title,
+                              maxLines: 4,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            Text(res.creator!.first),
+                            Text(res.category[0]),
+                            //Text(res.country[0]),
+                          ],
+                        ),
                       ),
-                      Text(res.creator!.first),
-                      Text(res.category[0]),
-                      //Text(res.country[0]),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: FadeInImage(
+                            width: 170,
+                            height: 250,
+                            placeholder: const AssetImage('assets/loading.gif'),
+                            image: NetworkImage(res.imageUrl ??
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
+                            fit: BoxFit.cover),
+                      ),
                     ],
                   ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: FadeInImage(
-                      width: 170,
-                      height: 250,
-                      placeholder: const AssetImage('assets/loading.gif'),
-                      image: NetworkImage(res.imageUrl ??
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
-                      fit: BoxFit.cover),
-                ),
-              ],
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
