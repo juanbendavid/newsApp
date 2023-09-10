@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 String _apiKey = 'apikey=pub_290727c317eeab276d7e57fba5737c3f53361';
 String _language = 'language=en';
+String country = 'country=ar';
 String url =
-    'https://newsdata.io/api/1/news?apikey=pub_290727c317eeab276d7e57fba5737c3f53361&language=en';
+    'https://newsdata.io/api/1/news?apikey=pub_290727c317eeab276d7e57fba5737c3f53361&language=en&$country';
 
 class NewsProvider extends ChangeNotifier {
   List<Result> newsList = [];
