@@ -62,8 +62,8 @@ class _CardNews extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    Text(res.creator!.first),
-                    Text(res.category[0]),
+                    //Text(res.creator.first),
+                    Text(res.category[0].name),
                     //Text(res.country[0]),
                   ],
                 ),

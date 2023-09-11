@@ -44,14 +44,14 @@ class Result {
   List<String>? keywords;
   List<String>? creator;
   dynamic videoUrl;
-  String? description;
+  String description;
   String content;
   DateTime pubDate;
   String? imageUrl;
   String sourceId;
   int sourcePriority;
   List<String> country;
-  List<String> category;
+  List<Category> category;
   Language language;
 
   Result({
@@ -80,7 +80,7 @@ class Result {
             ? []
             : List<String>.from(json["keywords"]!.map((x) => x)),
         creator: json["creator"] == null
-            ? ["No creator"]
+            ? []
             : List<String>.from(json["creator"]!.map((x) => x)),
         videoUrl: json["video_url"],
         description: json["description"],
@@ -90,7 +90,8 @@ class Result {
         sourceId: json["source_id"],
         sourcePriority: json["source_priority"],
         country: List<String>.from(json["country"].map((x) => x)),
-        category: List<String>.from(json["category"].map((x) => x)),
+        category: List<Category>.from(
+            json["category"].map((x) => categoryValues.map[x]!)),
         language: languageValues.map[json["language"]]!,
       );
 
@@ -110,14 +111,21 @@ class Result {
         "source_id": sourceId,
         "source_priority": sourcePriority,
         "country": List<dynamic>.from(country.map((x) => x)),
-        "category": List<dynamic>.from(category.map((x) => x)),
+        "category":
+            List<dynamic>.from(category.map((x) => categoryValues.reverse[x])),
         "language": languageValues.reverse[language],
       };
 }
 
-enum Language { ENGLISH }
+enum Category { SPORTS, TOP }
 
-final languageValues = EnumValues({"english": Language.ENGLISH});
+final categoryValues =
+    EnumValues({"sports": Category.SPORTS, "top": Category.TOP});
+
+enum Language { PORTUGUESE, SPANISH }
+
+final languageValues = EnumValues(
+    {"portuguese": Language.PORTUGUESE, "spanish": Language.SPANISH});
 
 class EnumValues<T> {
   Map<String, T> map;
