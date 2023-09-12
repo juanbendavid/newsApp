@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/data/model/news_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 //https://newsdata.io/api/1/news?apikey=pub_290727c317eeab276d7e57fba5737c3f53361&language=en
 
 String YOUR_API_KEY = 'pub_290727c317eeab276d7e57fba5737c3f53361';
@@ -18,11 +19,22 @@ class NewsProvider extends ChangeNotifier {
     getNews();
   }
 
+  final dio = Dio();
+
+  getNews() async {
+    final response = await dio.get(url);
+    final respResult = NewsModel.fromJson(response.data);
+    newsList.addAll(respResult.results);
+    notifyListeners();
+  }
+
+  /*
+  llamada con http
   getNews() async {
     final response = await http.get(Uri.parse(url));
     final resp = newsModelFromJson(response.body);
     newsList.addAll(resp.results);
     notifyListeners();
     print(resp.results[0].title);
-  }
+  }*/
 }
