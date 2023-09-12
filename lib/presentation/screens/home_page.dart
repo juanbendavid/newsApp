@@ -38,47 +38,50 @@ class _CardNews extends StatelessWidget {
       itemCount: news.newsList.length,
       itemBuilder: (context, index) {
         final res = news.newsList[index];
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        right: 30,
+        return GestureDetector(
+          onTap: () => Navigator.pushNamed(context, '/detail'),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          right: 30,
+                        ),
+                        child: Text(
+                          res.title,
+                          maxLines: 4,
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      child: Text(
-                        res.title,
-                        maxLines: 4,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    //Text(res.creator.first),
-                    Text(res.category[0].name),
-                    //Text(res.country[0]),
-                  ],
+                      //Text(res.creator.first),
+                      Text(res.category[0].name),
+                      //Text(res.country[0]),
+                    ],
+                  ),
                 ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: FadeInImage(
-                    width: 170,
-                    height: 250,
-                    placeholder: const AssetImage('assets/loading.gif'),
-                    image: NetworkImage(res.imageUrl ??
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
-                    fit: BoxFit.cover),
-              ),
-            ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: FadeInImage(
+                      width: 170,
+                      height: 250,
+                      placeholder: const AssetImage('assets/loading.gif'),
+                      image: NetworkImage(res.imageUrl ??
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
+                      fit: BoxFit.cover),
+                ),
+              ],
+            ),
           ),
         );
       },
