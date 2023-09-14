@@ -44,7 +44,7 @@ class Result {
   List<String>? keywords;
   List<String>? creator;
   dynamic videoUrl;
-  String description;
+  String? description;
   String content;
   DateTime pubDate;
   String? imageUrl;
