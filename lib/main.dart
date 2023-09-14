@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/config/Theme/theme.dart';
 import 'package:news_app/presentation/screens/detail_page.dart';
 import 'package:news_app/presentation/screens/home_page.dart';
-import 'package:news_app/presentation/screens/providers/news_provider.dart';
+import 'package:news_app/data/providers/news_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(const MyApp());

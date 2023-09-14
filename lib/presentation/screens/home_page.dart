@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/presentation/screens/providers/news_provider.dart';
+import 'package:news_app/data/providers/news_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

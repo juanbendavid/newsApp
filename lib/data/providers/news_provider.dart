@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/data/model/news_model.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 //https://newsdata.io/api/1/news?apikey=pub_290727c317eeab276d7e57fba5737c3f53361&language=en
 
