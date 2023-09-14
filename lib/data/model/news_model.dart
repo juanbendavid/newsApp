@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 NewsModel newsModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
 String newsModelToJson(NewsModel data) => json.encode(data.toJson());
@@ -46,11 +48,11 @@ class Result {
   dynamic videoUrl;
   String? description;
   String content;
-  DateTime pubDate;
+  String pubDate;
   String? imageUrl;
   String sourceId;
   int sourcePriority;
-  List<String> country;
+  List<String>? country;
   List<Category> category;
   Language language;
 
@@ -85,7 +87,8 @@ class Result {
         videoUrl: json["video_url"],
         description: json["description"],
         content: json["content"],
-        pubDate: DateTime.parse(json["pubDate"]),
+        //pubDate: DateTime.parse(json["pubDate"]),
+        pubDate: DateFormat.yMMMd().format(DateTime.parse(json['pubDate'])),
         imageUrl: json["image_url"],
         sourceId: json["source_id"],
         sourcePriority: json["source_priority"],
@@ -106,11 +109,14 @@ class Result {
         "video_url": videoUrl,
         "description": description,
         "content": content,
-        "pubDate": pubDate.toIso8601String(),
+        "pubDate": pubDate,
         "image_url": imageUrl,
         "source_id": sourceId,
         "source_priority": sourcePriority,
-        "country": List<dynamic>.from(country.map((x) => x)),
+        //"country": List<dynamic>.from(country.map((x) => x)),
+        "country": country == null
+            ? ["No Country"]
+            : List<dynamic>.from(country!.map((x) => x)),
         "category":
             List<dynamic>.from(category.map((x) => categoryValues.reverse[x])),
         "language": languageValues.reverse[language],

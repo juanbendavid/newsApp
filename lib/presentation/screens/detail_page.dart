@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${arguments.pubDate}  ${arguments.pubDate}",
+                  "${arguments.pubDate}  ${arguments.country!.first}",
                   style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.w300),
                 ),
