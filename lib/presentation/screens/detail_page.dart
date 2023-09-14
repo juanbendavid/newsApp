@@ -11,55 +11,61 @@ class DetailPage extends StatelessWidget {
     final Result arguments =
         ModalRoute.of(context)!.settings.arguments as Result;
 
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "${arguments.pubDate}  ${arguments.pubDate}",
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              arguments.title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "${arguments.category[0].name}  ${arguments.language}",
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                  width: double.infinity,
-                  height: 300,
-                  placeholder: const AssetImage('assets/loading.gif'),
-                  image: NetworkImage(arguments.imageUrl ??
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
-                  fit: BoxFit.cover),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(arguments.description ?? "no description"),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(arguments.content ?? "no content"),
-          ],
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+          body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${arguments.pubDate}  ${arguments.pubDate}",
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                arguments.title,
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "${arguments.category[0].name}  ${arguments.language}",
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                    width: double.infinity,
+                    height: 300,
+                    placeholder: const AssetImage('assets/loading.gif'),
+                    image: NetworkImage(arguments.imageUrl ??
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
+                    fit: BoxFit.cover),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(arguments.description ?? "no description"),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(arguments.content ?? "no content"),
+            ],
+          ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }
