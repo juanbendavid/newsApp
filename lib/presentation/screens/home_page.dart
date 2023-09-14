@@ -39,7 +39,8 @@ class _CardNews extends StatelessWidget {
       itemBuilder: (context, index) {
         final res = news.newsList[index];
         return GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/detail'),
+          onTap: () => Navigator.pushNamed(context, '/detail',
+              arguments: news.newsList[index]),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
