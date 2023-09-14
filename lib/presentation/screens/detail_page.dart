@@ -37,7 +37,7 @@ class DetailPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "${arguments.category[0].name}  ${arguments.language}",
+                  "${arguments.category[0].name}  ${arguments.language.name}",
                   style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.w300),
                 ),
