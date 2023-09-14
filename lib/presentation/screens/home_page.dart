@@ -71,15 +71,18 @@ class _CardNews extends StatelessWidget {
                     ],
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: FadeInImage(
-                      width: 170,
-                      height: 250,
-                      placeholder: const AssetImage('assets/loading.gif'),
-                      image: NetworkImage(res.imageUrl ??
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
-                      fit: BoxFit.cover),
+                Hero(
+                  tag: res.title,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: FadeInImage(
+                        width: 170,
+                        height: 250,
+                        placeholder: const AssetImage('assets/loading.gif'),
+                        image: NetworkImage(res.imageUrl ??
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
+                        fit: BoxFit.cover),
+                  ),
                 ),
               ],
             ),

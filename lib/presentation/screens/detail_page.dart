@@ -44,15 +44,18 @@ class DetailPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: FadeInImage(
-                      width: double.infinity,
-                      height: 300,
-                      placeholder: const AssetImage('assets/loading.gif'),
-                      image: NetworkImage(arguments.imageUrl ??
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
-                      fit: BoxFit.cover),
+                Hero(
+                  tag: arguments.title,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: FadeInImage(
+                        width: double.infinity,
+                        height: 300,
+                        placeholder: const AssetImage('assets/loading.gif'),
+                        image: NetworkImage(arguments.imageUrl ??
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcs7QeC2_kP0lJEj7Q25mpHyeNkLt_oQ43uP2_jLnhozFShnw-Mba_ataiwQd_W1aByyU&usqp=CAU'),
+                        fit: BoxFit.cover),
+                  ),
                 ),
                 const SizedBox(
                   height: 15,
