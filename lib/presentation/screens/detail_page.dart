@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${arguments.pubDate}  ${arguments.country!.first}",
+                  "${arguments.pubDate}  ${arguments.country?.first}",
                   style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.w300),
                 ),
@@ -29,7 +29,7 @@ class DetailPage extends StatelessWidget {
                   height: 15,
                 ),
                 Text(
-                  arguments.title,
+                  arguments.title ?? "no title",
                   style: const TextStyle(
                       fontSize: 22, fontWeight: FontWeight.bold),
                 ),
@@ -37,7 +37,7 @@ class DetailPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "${arguments.category[0].name}  ${arguments.language.name}",
+                  "${arguments.category?[0].name}  ${arguments.language?.name}",
                   style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.w300),
                 ),
@@ -45,7 +45,7 @@ class DetailPage extends StatelessWidget {
                   height: 10,
                 ),
                 Hero(
-                  tag: arguments.title,
+                  tag: arguments.title ?? "no arguments",
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: FadeInImage(

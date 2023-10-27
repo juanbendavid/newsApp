@@ -4,30 +4,30 @@
 
 import 'dart:convert';
 
-import 'package:intl/intl.dart';
-
 NewsModel newsModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
 String newsModelToJson(NewsModel data) => json.encode(data.toJson());
 
 class NewsModel {
-  String status;
-  int totalResults;
+  String? status;
+  int? totalResults;
   List<Result> results;
-  String nextPage;
+  String? nextPage;
 
   NewsModel({
-    required this.status,
-    required this.totalResults,
+    this.status,
+    this.totalResults,
     required this.results,
-    required this.nextPage,
+    this.nextPage,
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         status: json["status"],
         totalResults: json["totalResults"],
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        results: json["results"] == null
+            ? []
+            : List<Result>.from(
+                json["results"]!.map((x) => Result.fromJson(x))),
         nextPage: json["nextPage"],
       );
 
@@ -40,38 +40,38 @@ class NewsModel {
 }
 
 class Result {
-  String articleId;
-  String title;
-  String link;
+  String? articleId;
+  String? title;
+  String? link;
   List<String>? keywords;
   List<String>? creator;
   dynamic videoUrl;
   String? description;
-  String content;
-  String pubDate;
+  String? content;
+  DateTime? pubDate;
   String? imageUrl;
-  String sourceId;
-  int sourcePriority;
+  String? sourceId;
+  int? sourcePriority;
   List<String>? country;
-  List<Category> category;
-  Language language;
+  List<Category>? category;
+  Language? language;
 
   Result({
-    required this.articleId,
-    required this.title,
-    required this.link,
-    required this.keywords,
-    required this.creator,
-    required this.videoUrl,
-    required this.description,
-    required this.content,
-    required this.pubDate,
-    required this.imageUrl,
-    required this.sourceId,
-    required this.sourcePriority,
-    required this.country,
-    required this.category,
-    required this.language,
+    this.articleId,
+    this.title,
+    this.link,
+    this.keywords,
+    this.creator,
+    this.videoUrl,
+    this.description,
+    this.content,
+    this.pubDate,
+    this.imageUrl,
+    this.sourceId,
+    this.sourcePriority,
+    this.country,
+    this.category,
+    this.language,
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
@@ -87,15 +87,19 @@ class Result {
         videoUrl: json["video_url"],
         description: json["description"],
         content: json["content"],
-        //pubDate: DateTime.parse(json["pubDate"]),
-        pubDate: DateFormat.yMMMd().format(DateTime.parse(json['pubDate'])),
+        pubDate:
+            json["pubDate"] == null ? null : DateTime.parse(json["pubDate"]),
         imageUrl: json["image_url"],
         sourceId: json["source_id"],
         sourcePriority: json["source_priority"],
-        country: List<String>.from(json["country"].map((x) => x)),
-        category: List<Category>.from(
-            json["category"].map((x) => categoryValues.map[x]!)),
-        language: languageValues.map[json["language"]]!,
+        country: json["country"] == null
+            ? []
+            : List<String>.from(json["country"]!.map((x) => x)),
+        category: json["category"] == null
+            ? []
+            : List<Category>.from(
+                json["category"]!.map((x) => categoryValues.map[x]!)),
+        language: languageValues.map[json["language"]],
       );
 
   Map<String, dynamic> toJson() => {
@@ -109,16 +113,16 @@ class Result {
         "video_url": videoUrl,
         "description": description,
         "content": content,
-        "pubDate": pubDate,
+        "pubDate": pubDate?.toIso8601String(),
         "image_url": imageUrl,
         "source_id": sourceId,
         "source_priority": sourcePriority,
-        //"country": List<dynamic>.from(country.map((x) => x)),
-        "country": country == null
-            ? ["No Country"]
-            : List<dynamic>.from(country!.map((x) => x)),
-        "category":
-            List<dynamic>.from(category.map((x) => categoryValues.reverse[x])),
+        "country":
+            country == null ? [] : List<dynamic>.from(country!.map((x) => x)),
+        "category": category == null
+            ? []
+            : List<dynamic>.from(
+                category!.map((x) => categoryValues.reverse[x])),
         "language": languageValues.reverse[language],
       };
 }

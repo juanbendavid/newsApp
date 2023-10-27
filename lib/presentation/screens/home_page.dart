@@ -56,7 +56,7 @@ class _CardNews extends StatelessWidget {
                           right: 30,
                         ),
                         child: Text(
-                          res.title,
+                          res.title ?? "no title",
                           maxLines: 4,
                           style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -66,13 +66,13 @@ class _CardNews extends StatelessWidget {
                         height: 15,
                       ),
                       //Text(res.creator.first),
-                      Text(res.category[0].name),
+                      Text(res.category?[0].name ?? "no category"),
                       //Text(res.country[0]),
                     ],
                   ),
                 ),
                 Hero(
-                  tag: res.title,
+                  tag: res.title ?? "no title",
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: FadeInImage(
